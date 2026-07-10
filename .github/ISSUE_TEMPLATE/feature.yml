@@ -1,0 +1,81 @@
+name: Feature
+description: Structure a feature before beginning a sprint — task, requirements, expected result, evaluation, and future passes.
+labels: ['feature']
+type: 'Feature'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill this out before starting work. The goal is to think the feature through before writing a single line of code.
+
+  - type: input
+    id: context
+    attributes:
+      label: ⚙️ Context & Constraints
+      description: Note any version numbers, languages, platforms, or hard constraints that apply to this task.
+      placeholder: 'e.g., Godot 4.5 / GDScript — must be compatible with existing EventManager system'
+    validations:
+      required: false
+
+  - type: textarea
+    id: task_description
+    attributes:
+      label: 📋 The Task
+      description: High-level overview of what needs to be built. What is the core goal, and what does the finished feature do?
+      placeholder: |
+        e.g., Implement a central Event Manager system to handle global game events (player death, level progression, etc.) without tight coupling between systems.
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: 📌 Requirements
+      description: |
+        Break the task into discrete requirements. For each one, add a short description of implementation details, constraints, or flexibility ("This could be X or Y — developer's choice").
+      placeholder: |
+        - [ ] Requirement 1: Description of what it entails and any flexibility in implementation.
+        - [ ] Requirement 2: Description. Note any hard constraints here.
+        - [ ] Requirement 3: Description. Call out if this touches other systems.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_result
+    attributes:
+      label: 🚀 Expected Result
+      description: What does a completed, working implementation look like? Describe the end state in 1–3 sentences — what can someone do or observe that they couldn't before?
+      placeholder: |
+        e.g., Scripts can dynamically subscribe to and unsubscribe from named game events. Triggering an event fires all registered callbacks with no measurable frame drop under normal load. The feature ships as a self-contained autoload with no dependencies on other systems.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evaluation_methods
+    attributes:
+      label: 🧪 Evaluation
+      description: |
+        How will you verify this works and meets quality standards? Consider covering:
+        **Functionality** — does it do what the requirements say?
+        **Code quality** — is it clean, commented, and well-structured?
+        **Optimization** — any performance targets or profiling steps?
+        **Integration** — does it play nicely with existing systems?
+      placeholder: |
+        Functionality: Manually trigger each event type and confirm all registered listeners fire correctly.
+        Code quality: Review for clear naming, signal usage, and inline comments on non-obvious logic.
+        Optimization: Stress test by emitting 10,000 events in a single frame; confirm no frame spike above 2ms.
+        Integration: Confirm existing PlayerController and UIManager can subscribe without modification.
+    validations:
+      required: true
+
+  - type: textarea
+    id: future_optimizations
+    attributes:
+      label: ⏳ Future Pass — Optimizations & Additions
+      description: What's explicitly out of scope for this sprint but worth tracking? List nice-to-haves, known tech debt, or follow-up ideas so they don't get lost.
+      placeholder: |
+        - Thread-safe event queue for async contexts.
+        - Visual debugger panel showing active listeners per event.
+        - Priority ordering for callbacks (high/normal/low).
+    validations:
+      required: false

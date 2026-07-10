@@ -1,0 +1,77 @@
+name: Task
+description: A discrete piece of work that is not a new feature — refactor, fix, config change, tooling, etc.
+labels: ['task']
+type: 'Task'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for contained work items: refactors, small fixes, config changes, tooling, documentation, cleanup, etc. If this is a new feature, use the Feature template instead.
+
+  - type: dropdown
+    id: task_type
+    attributes:
+      label: 🏷️ Type
+      description: What kind of task is this?
+      options:
+        - 'Refactor'
+        - 'Cleanup / Tech Debt'
+        - 'Configuration'
+        - 'Tooling / Pipeline'
+        - 'Documentation'
+        - 'Performance'
+        - 'Testing'
+        - 'Other'
+    validations:
+      required: true
+
+  - type: input
+    id: area
+    attributes:
+      label: 📁 Area / System
+      description: Which part of the project does this touch?
+      placeholder: 'e.g., EventManager, MapGenerator, Player, UI, Build pipeline'
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📋 What & Why
+      description: What needs to be done and why now? A sentence or two is enough — if it needs more explanation than that, consider whether it belongs in a Feature issue.
+      placeholder: |
+        e.g., Extract the coin-spawning logic out of MapGenerator into a dedicated CoinSpawner node. Currently, MapGenerator is handling too many responsibilities, and it's making the spawn logic hard to adjust independently.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: ✅ Acceptance Criteria
+      description: How do you know this task is done? List the specific conditions that must be true.
+      placeholder: |
+        - [ ] CoinSpawner exists as a standalone node/script.
+        - [ ] MapGenerator no longer contains any coin-related logic.
+        - [ ] Coin spawn behavior is identical to before — no regressions.
+        - [ ] Config values (coin count, etc.) are still editable from the config file.
+    validations:
+      required: true
+
+  - type: textarea
+    id: related
+    attributes:
+      label: 🔗 Related Issues or Context
+      description: Link to the feature, bug, or PR this task stems from, if any.
+      placeholder: |
+        e.g., Spun out of #18 (Feature: Coin Collection). See also #23.
+    validations:
+      required: false
+
+  - type: input
+    id: context
+    attributes:
+      label: ⚙️ Version / Constraints
+      description: Any version numbers or hard constraints that apply (optional).
+      placeholder: 'e.g., Godot 4.5 — must not break existing save format'
+    validations:
+      required: false
