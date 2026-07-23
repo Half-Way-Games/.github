@@ -51,24 +51,6 @@ body:
       required: true
 
   - type: textarea
-    id: evaluation_methods
-    attributes:
-      label: 🧪 Evaluation
-      description: |
-        How will you verify this works and meets quality standards? Consider covering:
-        **Functionality** — does it do what the requirements say?
-        **Code quality** — is it clean, commented, and well-structured?
-        **Optimization** — any performance targets or profiling steps?
-        **Integration** — does it play nicely with existing systems?
-      placeholder: |
-        Functionality: Manually trigger each event type and confirm all registered listeners fire correctly.
-        Code quality: Review for clear naming, signal usage, and inline comments on non-obvious logic.
-        Optimization: Stress test by emitting 10,000 events in a single frame; confirm no frame spike above 2ms.
-        Integration: Confirm existing PlayerController and UIManager can subscribe without modification.
-    validations:
-      required: true
-
-  - type: textarea
     id: future_optimizations
     attributes:
       label: ⏳ Future Pass — Optimizations & Additions
